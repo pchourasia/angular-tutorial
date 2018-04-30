@@ -1,0 +1,33 @@
+<table>
+    <thead>
+        <tr>
+            <!-- <th colspan='{{columnSpan}}'> -->  <!--colspan is not dom property, so it will throw error if we use data or property binding-->
+            <th attr.colspan = '{{columnSpan}}' [class]='headerStyle' class='boldClass'>    <!--class binding replaces all classes of class attribute-->
+            <!-- <th [attr.colspan] = 'columnSpan'> --> <!--works as expected-->    <!--to achieve this, we can use attribute binding-->
+                Employee Details
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>First Name</td>
+            <td>{{firstName}}</td>
+        </tr>
+        <tr>
+            <td>Last Name</td>
+            <td>{{lastName}}</td>
+        </tr>
+        <tr *ngIf='showDetails'>    <!-- *ng* means structural directive -->
+            <td>Gender</td>
+            <td>{{gender}}</td>
+        </tr>
+        <tr *ngIf='showDetails'>
+            <td>Age</td>
+            <td>{{age}}</td>
+        </tr>
+    </tbody>
+</table>
+<br/>
+event binding : <button (click)='toggleDetails()'>{{showDetails? 'Hide' : 'Show'}}</button> ||
+2 way data binding: <input [value]='firstName' (input)='firstName = $event.target.value'> <!--$event is exposed by angular data binding and contains events values-->
+using ngModel of FormsModule <input [(ngModel)]="firstName"> || <!--2 way data binding is combination of both property binding and event binding-->

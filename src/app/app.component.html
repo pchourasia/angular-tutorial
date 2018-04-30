@@ -1,0 +1,30 @@
+<div>
+    <h1>{{pageHeader ? pageHeader : 'No Header'}}</h1>
+    <h4>{{'Full Name: ' + getFullName()}}</h4>
+    <img src = '{{imagePath}}'/>   <!--data binding-->
+    <img [src] = 'imagePath'/>    <!--property  binding-->  <!--angular binding works with dom properties, events but not with html attributes or html ele properties-->
+    <img src = 'https://angular.io/assets/{{imgPath}}'/>   <!--must use data binding-->
+    <button [disabled]='isDisabled'>Click Me</button>      <!--must use property binding, to set an element property to a non-string data value-->
+    <button bind-disabled='isDisabled'>Click Me</button>  <!--canonical property binding-->
+    <span bind-innerHtml='pageHeader'></span>   <!--canonical property binding-->
+    <div>{{badHtml}}</div>
+    <div [innerHtml]='badHtml'></div> <!--sanitizes malicious content-->
+    <my-employee></my-employee><br>
+    Class binding: 
+    <button class='colorClass' [class]='boldItalicStyle'>button</button>   <!--class binding replaces all classes of class attribute. check in inspector window-->
+    <button class='colorClass' [class.boldClass]='applyBoldClass'>button</button>
+    <button class='colorClass boldClass italicClass' [class.boldClass]='!applyBoldClass'>button</button>
+    <button class='colorClass' [ngClass]='addClasses()'>button</button>||
+    Style binding: 
+    <button style='color:red;' [style.fontWeight]='isBold? bold : normal'>button</button>   <!--class binding replaces all classes of class attribute. check in inspector window-->
+    <button style='color:red;' [style.font-size.px]='fontSize'>button</button>
+    <button style='color:red;' [ngStyle]='addStyles()'>button</button>||
+    Event binding: use ()
+    <button (click)='onClick()'>Click me</button>||
+    Canonical form(on-*): <button on-click='onClick()'>Click me</button>
+    <br/><br/>
+    *ngFor, structural binding
+    <list-employee></list-employee><br/><br/>
+    ngOnChanges(): <input type="text" [(ngModel)]='ngOnChangesText'/>
+    <simple [simpleInput]='ngOnChangesText'></simple>
+  </div>
